@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -10,11 +10,13 @@ module.exports = {
   // 使用webpack-dev-server時，指定要使用的資料夾
   devServer: {
     contentBase: './dist',
+    hot: true,
+    open: 'chrome',
   },
-  // 熱模塊需要多個路徑
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-hot-middleware/client?reload=true',
     './src/index.js',
   ],
   output: {
@@ -30,10 +32,6 @@ module.exports = {
       title: '管理输出',
       template: 'src/index.html',
     }),
-    // 熱模塊
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
     rules: [{
