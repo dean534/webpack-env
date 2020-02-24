@@ -10,7 +10,7 @@ module.exports = {
   // 使用webpack-dev-server時，指定要使用的資料夾
   devServer: {
     contentBase: './dist',
-    hot: true,
+    liveReload: true,
     open: 'chrome',
   },
   optimization: {

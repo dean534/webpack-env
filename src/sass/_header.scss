@@ -1,0 +1,21 @@
+$color-blue: blue;
+
+.header{
+    &_brand{
+        
+    }
+    &_navbar{
+
+    }
+    &_nav{
+        &-primary{
+            color:$color-blue;
+        }
+        &-secondary{
+            color:green;
+        }
+        &-disable{
+            color:$color-blue;
+        }
+    }
+}
